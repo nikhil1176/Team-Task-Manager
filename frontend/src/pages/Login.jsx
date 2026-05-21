@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { LogIn, Moon, Sun, UserPlus, Sparkles, ShieldCheck, Users, CheckCircle2, ArrowRight } from 'lucide-react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import api from '../api';
 
 const authCopy = {
   login: {
@@ -76,7 +76,7 @@ const Login = () => {
 
     try {
       if (isLogin) {
-        const response = await axios.post('http://localhost:5000/api/auth/login', {
+        const response = await api.post('/api/auth/login', {
           email: formData.email,
           password: formData.password,
         });
@@ -84,7 +84,7 @@ const Login = () => {
         localStorage.setItem('user', JSON.stringify(response.data));
         navigate('/dashboard');
       } else {
-        await axios.post('http://localhost:5000/api/auth/register', formData);
+        await api.post('/api/auth/register', formData);
         setFormData({
           name: '',
           email: formData.email,
