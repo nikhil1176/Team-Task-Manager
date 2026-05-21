@@ -84,10 +84,15 @@ const Login = () => {
         localStorage.setItem('user', JSON.stringify(response.data));
         navigate('/dashboard');
       } else {
-        const response = await axios.post('http://localhost:5000/api/auth/register', formData);
-        localStorage.setItem('token', response.data.token);
-        localStorage.setItem('user', JSON.stringify(response.data));
-        navigate('/dashboard');
+        await axios.post('http://localhost:5000/api/auth/register', formData);
+        setFormData({
+          name: '',
+          email: formData.email,
+          password: '',
+          role: 'MEMBER',
+        });
+        setIsLogin(true);
+        setError('');
       }
     } catch (err) {
       setError(err.response?.data?.message || 'Something went wrong. Please try again.');
