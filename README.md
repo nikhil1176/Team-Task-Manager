@@ -31,47 +31,35 @@ Follow these steps to get the project running on your local machine.
 * Node.js installed on your machine
 * Git
 
-### 1. Clone the repository
-```bash
-git clone <your-github-repo-url>
-cd <your-project-folder>
+### **Local Setup**
 
----
+1. **Clone the Repository:**
+   ```bash
+   git clone https://github.com/nikhil1176/Online-Forum.git
+   cd Online-Forum
+   ```
 
- 2. **Backend Setup**
-```bash
-cd backend
-npm install
+2. **Backend Setup:**
+   ```bash
+   cd backend
+   npm install
+   ```
 
----
+3. **Frontend Setup:**
+   ```bash
+   cd frontend
+   npm install
+   ```
 
-### **Backend Environment Variables**
+### **Environment Variables**
 
-Create a `.env` file in the backend directory and add the following variables:
+Create a `.env` file in the backend directory with the following:
+
 ```
 PORT=5000
-JWT_SECRET=your_super_secret_key
-# Add your database connection URI here
+DATABASE_URL=Your MongoDB connection string
+JWT_SECRET=Your private key for authentication
 ```
-
-Start the backend server:
-```bash
-npm start
-#or npm run dev (if using nodemon)
-```
-
-2. **Frontend Setup**
-Open a new terminal window/tab:
-```bash
-cd frontend
-npm install
-```
-### **Frontend Environment Variables**
-Create a `.env` file in the frontend directory:
-VITE_API_URL=http://localhost:5000
-
-Start the frontend development server:
-npm run dev
 
 ---
 
