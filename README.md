@@ -35,8 +35,8 @@ Follow these steps to get the project running on your local machine.
 
 1. **Clone the Repository:**
    ```bash
-   git clone https://github.com/nikhil1176/Online-Forum.git
-   cd Online-Forum
+   git clone https://github.com/nikhil1176/Team-Task-Manager.git
+   cd team-task-manager
    ```
 
 2. **Backend Setup:**
