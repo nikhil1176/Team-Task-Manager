@@ -118,9 +118,9 @@ const Dashboard = () => {
           api.get('/api/tasks/recent', config)
         ]);
         
-        setProjects(projectsRes.data);
-        setStats(statsRes.data);
-        setRecentTasks(recentRes.data);
+        setProjects(Array.isArray(projectsRes.data) ? projectsRes.data : []);
+        setStats(statsRes.data || { activeTasks: 0, totalUsers: 1, totalTasks: 0 });
+        setRecentTasks(Array.isArray(recentRes.data) ? recentRes.data : recentRes.data?.tasks || []);
         
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -148,6 +148,7 @@ const Dashboard = () => {
     project.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
     project.description.toLowerCase().includes(searchQuery.toLowerCase())
   );
+  const safeRecentTasks = Array.isArray(recentTasks) ? recentTasks : [];
 
   const highlightMatch = (text, query) => {
     if (!query || query.trim() === '') return text;
@@ -309,12 +310,12 @@ const Dashboard = () => {
           <h2 className="text-2xl font-extrabold text-zinc-900 dark:text-white tracking-tight mb-8">Recent Activity</h2>
           
           <div className="space-y-6">
-            {recentTasks.length === 0 ? (
+            {safeRecentTasks.length === 0 ? (
                <div className="text-center py-16 border-2 border-dashed border-zinc-200 dark:border-zinc-700 rounded-2xl bg-zinc-50/50 dark:bg-zinc-800/50">
                  <p className="text-zinc-500 text-sm font-semibold">No tasks created yet.</p>
                </div>
             ) : (
-              recentTasks.map((task) => (
+              safeRecentTasks.map((task) => (
                 <div key={task._id} className="flex gap-4">
                   <div className="relative mt-1">
                     <div className="w-8 h-8 rounded-full bg-indigo-50 dark:bg-indigo-900/30 border border-indigo-100 dark:border-indigo-800 flex items-center justify-center relative z-10">
