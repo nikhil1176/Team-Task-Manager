@@ -36,6 +36,8 @@ Follow these steps to get the project running on your local machine.
 git clone <your-github-repo-url>
 cd <your-project-folder>
 
+---
+
  2. **Backend Setup**
 ```bash
 cd backend
